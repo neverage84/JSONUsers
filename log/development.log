@@ -303,3 +303,107 @@ Processing by Api::UsersController#show as HTML
 Completed 200 OK in 40ms (Views: 0.4ms | ActiveRecord: 9.9ms | Allocations: 14836)
 
 
+Started GET "/api/users/search?email=%22Lucio_Hettinger@annie.ca%22" for ::1 at 2025-01-03 16:38:37 -0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#show as HTML
+  Parameters: {"email"=>"\"Lucio_Hettinger@annie.ca\"", "id"=>"search"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:93:in `set_user'
+Completed 404 Not Found in 31ms (ActiveRecord: 4.9ms | Allocations: 5664)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=search):
+  
+app/controllers/api/users_controller.rb:93:in `set_user'
+Started GET "/api/users/search?email=%22Lucio_Hettinger@annie.ca%22" for ::1 at 2025-01-03 16:39:32 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"email"=>"\"Lucio_Hettinger@annie.ca\""}
+  [1m[35mSQL (2.8ms)[0m  [1m[34mSELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."phone" AS t0_r3, "users"."username" AS t0_r4, "users"."address_id" AS t0_r5, "users"."company_id" AS t0_r6, "users"."created_at" AS t0_r7, "users"."updated_at" AS t0_r8, "addresses"."id" AS t1_r0, "addresses"."street" AS t1_r1, "addresses"."suite" AS t1_r2, "addresses"."city" AS t1_r3, "addresses"."zipcode" AS t1_r4, "addresses"."lat" AS t1_r5, "addresses"."lng" AS t1_r6, "addresses"."created_at" AS t1_r7, "addresses"."updated_at" AS t1_r8, "companies"."id" AS t2_r0, "companies"."name" AS t2_r1, "companies"."catch_phrase" AS t2_r2, "companies"."bs" AS t2_r3, "companies"."created_at" AS t2_r4, "companies"."updated_at" AS t2_r5 FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id" WHERE (users.email ILIKE '%"Lucio_Hettinger@annie.ca"%')[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 36ms (Views: 0.6ms | ActiveRecord: 8.2ms | Allocations: 10756)
+
+
+Started GET "/api/users" for ::1 at 2025-01-03 16:39:43 -0600
+Processing by Api::UsersController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mAddress Load (0.7ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+Completed 200 OK in 53ms (Views: 0.8ms | ActiveRecord: 3.1ms | Allocations: 53612)
+
+
+Started GET "/api/users/search?id=1" for ::1 at 2025-01-03 16:39:58 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (0.6ms)[0m  [1m[34mSELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."phone" AS t0_r3, "users"."username" AS t0_r4, "users"."address_id" AS t0_r5, "users"."company_id" AS t0_r6, "users"."created_at" AS t0_r7, "users"."updated_at" AS t0_r8, "addresses"."id" AS t1_r0, "addresses"."street" AS t1_r1, "addresses"."suite" AS t1_r2, "addresses"."city" AS t1_r3, "addresses"."zipcode" AS t1_r4, "addresses"."lat" AS t1_r5, "addresses"."lng" AS t1_r6, "addresses"."created_at" AS t1_r7, "addresses"."updated_at" AS t1_r8, "companies"."id" AS t2_r0, "companies"."name" AS t2_r1, "companies"."catch_phrase" AS t2_r2, "companies"."bs" AS t2_r3, "companies"."created_at" AS t2_r4, "companies"."updated_at" AS t2_r5 FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 10ms (Views: 1.5ms | ActiveRecord: 0.6ms | Allocations: 5212)
+
+
+Started GET "/api/users/search?username=1" for ::1 at 2025-01-03 16:40:40 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"username"=>"1"}
+  [1m[35mSQL (0.6ms)[0m  [1m[34mSELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."phone" AS t0_r3, "users"."username" AS t0_r4, "users"."address_id" AS t0_r5, "users"."company_id" AS t0_r6, "users"."created_at" AS t0_r7, "users"."updated_at" AS t0_r8, "addresses"."id" AS t1_r0, "addresses"."street" AS t1_r1, "addresses"."suite" AS t1_r2, "addresses"."city" AS t1_r3, "addresses"."zipcode" AS t1_r4, "addresses"."lat" AS t1_r5, "addresses"."lng" AS t1_r6, "addresses"."created_at" AS t1_r7, "addresses"."updated_at" AS t1_r8, "companies"."id" AS t2_r0, "companies"."name" AS t2_r1, "companies"."catch_phrase" AS t2_r2, "companies"."bs" AS t2_r3, "companies"."created_at" AS t2_r4, "companies"."updated_at" AS t2_r5 FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 8ms (Views: 1.7ms | ActiveRecord: 0.6ms | Allocations: 5166)
+
+
+Started GET "/api/users/search?username=1" for ::1 at 2025-01-03 16:40:49 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"username"=>"1"}
+  [1m[35mSQL (0.6ms)[0m  [1m[34mSELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."phone" AS t0_r3, "users"."username" AS t0_r4, "users"."address_id" AS t0_r5, "users"."company_id" AS t0_r6, "users"."created_at" AS t0_r7, "users"."updated_at" AS t0_r8, "addresses"."id" AS t1_r0, "addresses"."street" AS t1_r1, "addresses"."suite" AS t1_r2, "addresses"."city" AS t1_r3, "addresses"."zipcode" AS t1_r4, "addresses"."lat" AS t1_r5, "addresses"."lng" AS t1_r6, "addresses"."created_at" AS t1_r7, "addresses"."updated_at" AS t1_r8, "companies"."id" AS t2_r0, "companies"."name" AS t2_r1, "companies"."catch_phrase" AS t2_r2, "companies"."bs" AS t2_r3, "companies"."created_at" AS t2_r4, "companies"."updated_at" AS t2_r5 FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 0.6ms | Allocations: 5147)
+
+
+Started GET "/api/users/search?username=Bret" for ::1 at 2025-01-03 16:40:52 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"username"=>"Bret"}
+  [1m[35mSQL (0.8ms)[0m  [1m[34mSELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."phone" AS t0_r3, "users"."username" AS t0_r4, "users"."address_id" AS t0_r5, "users"."company_id" AS t0_r6, "users"."created_at" AS t0_r7, "users"."updated_at" AS t0_r8, "addresses"."id" AS t1_r0, "addresses"."street" AS t1_r1, "addresses"."suite" AS t1_r2, "addresses"."city" AS t1_r3, "addresses"."zipcode" AS t1_r4, "addresses"."lat" AS t1_r5, "addresses"."lng" AS t1_r6, "addresses"."created_at" AS t1_r7, "addresses"."updated_at" AS t1_r8, "companies"."id" AS t2_r0, "companies"."name" AS t2_r1, "companies"."catch_phrase" AS t2_r2, "companies"."bs" AS t2_r3, "companies"."created_at" AS t2_r4, "companies"."updated_at" AS t2_r5 FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 8ms (Views: 1.5ms | ActiveRecord: 0.8ms | Allocations: 5146)
+
+
+Started GET "/api/users/search?username=Bret" for ::1 at 2025-01-03 16:42:21 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/api/users/search"):
+  
+Started GET "/api/users/search?username=Bret" for ::1 at 2025-01-03 16:43:02 -0600
+  
+ActionController::RoutingError (uninitialized constant Api::Users):
+  
+Started GET "/api/users/search?username=Bret" for ::1 at 2025-01-03 16:43:41 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/api/users/search"):
+  
+Started GET "/api/users/search?username=Bret" for ::1 at 2025-01-03 16:44:07 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"username"=>"Bret"}
+  [1m[35mSQL (0.5ms)[0m  [1m[34mSELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."phone" AS t0_r3, "users"."username" AS t0_r4, "users"."address_id" AS t0_r5, "users"."company_id" AS t0_r6, "users"."created_at" AS t0_r7, "users"."updated_at" AS t0_r8, "addresses"."id" AS t1_r0, "addresses"."street" AS t1_r1, "addresses"."suite" AS t1_r2, "addresses"."city" AS t1_r3, "addresses"."zipcode" AS t1_r4, "addresses"."lat" AS t1_r5, "addresses"."lng" AS t1_r6, "addresses"."created_at" AS t1_r7, "addresses"."updated_at" AS t1_r8, "companies"."id" AS t2_r0, "companies"."name" AS t2_r1, "companies"."catch_phrase" AS t2_r2, "companies"."bs" AS t2_r3, "companies"."created_at" AS t2_r4, "companies"."updated_at" AS t2_r5 FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 34ms (Views: 1.5ms | ActiveRecord: 7.1ms | Allocations: 16722)
+
+
+Started GET "/api/users/search?username=Bret" for ::1 at 2025-01-03 16:44:12 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"username"=>"Bret"}
+  [1m[35mSQL (0.7ms)[0m  [1m[34mSELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "users"."email" AS t0_r2, "users"."phone" AS t0_r3, "users"."username" AS t0_r4, "users"."address_id" AS t0_r5, "users"."company_id" AS t0_r6, "users"."created_at" AS t0_r7, "users"."updated_at" AS t0_r8, "addresses"."id" AS t1_r0, "addresses"."street" AS t1_r1, "addresses"."suite" AS t1_r2, "addresses"."city" AS t1_r3, "addresses"."zipcode" AS t1_r4, "addresses"."lat" AS t1_r5, "addresses"."lng" AS t1_r6, "addresses"."created_at" AS t1_r7, "addresses"."updated_at" AS t1_r8, "companies"."id" AS t2_r0, "companies"."name" AS t2_r1, "companies"."catch_phrase" AS t2_r2, "companies"."bs" AS t2_r3, "companies"."created_at" AS t2_r4, "companies"."updated_at" AS t2_r5 FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 0.7ms | Allocations: 5147)
+
+
+Started GET "/api/users/search?username=Bret" for ::1 at 2025-01-03 16:45:30 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"username"=>"Bret"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:87:in `search'
+Completed 200 OK in 45ms (Views: 1.9ms | ActiveRecord: 10.1ms | Allocations: 18255)
+
+
