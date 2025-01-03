@@ -39,9 +39,9 @@ class JsonImporter
           address: address,
           company: company
         )
-      rescue StandardError => e
-        Rails.logger.error("Failed to import user: #{user_data}, Error: #{e.message}")
       end
+    rescue StandardError => e
+        Rails.logger.error("Failed to import user: #{user_data}, Error: #{e.message}")
     end
   end
 end

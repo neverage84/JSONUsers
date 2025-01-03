@@ -171,3 +171,135 @@ FOREIGN KEY ("company_id")
   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
   [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/api/users" for ::1 at 2025-01-03 16:23:34 -0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /Users/noelle/Desktop/ShiftInteractive/JSONUsers/app/controllers/api/users_controller.rb to define constant Api::UsersController, but didn't):
+  
+zeitwerk (2.6.18) lib/zeitwerk/loader/callbacks.rb:32:in `on_file_autoloaded'
+zeitwerk (2.6.18) lib/zeitwerk/kernel.rb:27:in `require'
+activesupport (7.0.8.7) lib/active_support/inflector/methods.rb:278:in `const_get'
+activesupport (7.0.8.7) lib/active_support/inflector/methods.rb:278:in `constantize'
+activesupport (7.0.8.7) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.0.8.7) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.0.8.7) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (7.0.8.7) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (7.0.8.7) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.0.8.7) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.0.8.7) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.0.8.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.8.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.8.7) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.10) lib/rack/etag.rb:27:in `call'
+rack (2.2.10) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.10) lib/rack/head.rb:12:in `call'
+activerecord (7.0.8.7) lib/active_record/migration.rb:638:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.8.7) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/show_exceptions.rb:29:in `call'
+railties (7.0.8.7) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.8.7) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.8.7) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.8.7) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.8.7) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.8.7) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.10) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.8.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.10) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.8.7) lib/action_dispatch/middleware/host_authorization.rb:138:in `call'
+railties (7.0.8.7) lib/rails/engine.rb:530:in `call'
+puma (5.6.9) lib/puma/configuration.rb:252:in `call'
+puma (5.6.9) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.9) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.9) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.9) lib/puma/server.rb:443:in `process_client'
+puma (5.6.9) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2025-01-03 16:23:34 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/users" for ::1 at 2025-01-03 16:24:22 -0600
+Processing by Api::UsersController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:8:in `index'
+Completed 200 OK in 60ms (Views: 44.3ms | ActiveRecord: 7.4ms | Allocations: 28981)
+
+
+Started GET "/api/users" for ::1 at 2025-01-03 16:24:56 -0600
+Processing by Api::UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "addresses" ON "addresses"."id" = "users"."address_id" INNER JOIN "companies" ON "companies"."id" = "users"."company_id"[0m
+  ↳ app/controllers/api/users_controller.rb:8:in `index'
+Completed 200 OK in 24ms (Views: 14.1ms | ActiveRecord: 5.5ms | Allocations: 9777)
+
+
+Started GET "/api/users" for ::1 at 2025-01-03 16:30:43 -0600
+Processing by Api::UsersController#index as HTML
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 4721)
+
+
+  
+NameError (undefined local variable or method `user' for #<Api::UsersController:0x00000000013b78>
+Did you mean?  @user):
+  
+app/controllers/api/users_controller.rb:7:in `index'
+Started GET "/api/users" for ::1 at 2025-01-03 16:30:56 -0600
+Processing by Api::UsersController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mAddress Load (0.6ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mCompany Load (0.5ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+Completed 200 OK in 101ms (Views: 0.7ms | ActiveRecord: 22.9ms | Allocations: 49560)
+
+
+Started GET "/api/users" for ::1 at 2025-01-03 16:31:37 -0600
+Processing by Api::UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mAddress Load (0.4ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+Completed 200 OK in 32ms (Views: 0.8ms | ActiveRecord: 9.7ms | Allocations: 16731)
+
+
+Started GET "/api/users/4" for ::1 at 2025-01-03 16:32:57 -0600
+Processing by Api::UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:68:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+Completed 200 OK in 37ms (Views: 0.2ms | ActiveRecord: 8.8ms | Allocations: 15345)
+
+
+Started GET "/api/users/5" for ::1 at 2025-01-03 16:33:18 -0600
+Processing by Api::UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:68:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/api/users_controller.rb:23:in `show'
+Completed 200 OK in 40ms (Views: 0.4ms | ActiveRecord: 9.9ms | Allocations: 14836)
+
+

@@ -1,16 +1,40 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
   before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users
   def index
-    @users = User.all
-
-    render json: @users
+    @user = User.includes(:address, :company)
+    render json: @user.as_json(
+      only: [:id, :name, :email, :phone],
+      include: {
+        address: {
+          only: [:street, :suite, :city, :zipcode]
+        },
+        company: {
+          only: [:name, :catch_phrase, :bs],
+          as: :company_name
+        }
+      }
+    )
   end
 
   # GET /users/1
   def show
-    render json: @user
+    user = User.includes(:address, :company).find(params[:id])
+    render json: user.as_json(
+      only: [:id, :name, :email, :phone],
+      include: {
+        address: {
+          only: [:street, :suite, :city, :zipcode]
+        },
+        company: {
+          only: [:name, :catch_phrase, :bs],
+          as: :company_name
+        }
+      }
+    )
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: "User not found" }, status: :not_found
   end
 
   # POST /users
