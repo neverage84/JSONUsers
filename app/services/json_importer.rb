@@ -12,7 +12,6 @@ class JsonImporter
 
       users.each do |user_data|
 
-        # Create or find the associated address
         address = Address.find_or_create_by!(
           street: user_data.dig('address', 'street'),
           suite: user_data.dig('address', 'suite'),
@@ -22,16 +21,14 @@ class JsonImporter
           lng: user_data.dig('address', 'geo', 'lng')
         )
 
-        # Create or find the associated company
         company = Company.find_or_create_by!(
           name: user_data.dig('company', 'name'),
           catch_phrase: user_data.dig('company', 'catchPhrase'),
           bs: user_data.dig('company', 'bs')
         )
 
-        # Create or update the user
         User.create!(
-          id: user_data['id'], # Only include this if you want to use the JSON `id`
+          id: user_data['id'],
           name: user_data['name'],
           username: user_data['username'],
           email: user_data['email'],
