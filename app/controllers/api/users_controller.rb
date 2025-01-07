@@ -9,12 +9,9 @@ class Api::UsersController < ApplicationController
       include: {
         address: {
           only: [:street, :suite, :city, :zipcode]
-        },
-        company: {
-          only: [:name, :catch_phrase, :bs],
-          as: :company_name
         }
-      }
+      },
+      methods: :company_name
     )
   end
 
@@ -28,7 +25,7 @@ class Api::UsersController < ApplicationController
           only: [:street, :suite, :city, :zipcode]
         },
         company: {
-          only: [:name, :catch_phrase, :bs],
+          only: [:name],
           as: :company_name
         }
       }
@@ -63,28 +60,30 @@ class Api::UsersController < ApplicationController
   end
 
   def search
-    users = User.includes(:address, :company)
-
+    users = User.includes(:address, :company).references(:usersearch)
     # Filter by Name
     users = users.where("users.name ILIKE ?", "%#{params[:name]}%") if params[:name].present?
-
     # Filter by Email
     users = users.where("users.email ILIKE ?", "%#{params[:email]}%") if params[:email].present?
-
+    # Filter by Street address
+    users = users.where("addresses.street ILIKE ?", "%#{params[:street_address]}%") if params[:street_address].present?
     # Filter by Phone
     users = users.where("users.phone ILIKE ?", "%#{params[:phone]}%") if params[:phone].present?
-
-    # Filter by Street Address
-    users = users.where("addresses.street_address ILIKE ?", "%#{params[:street_address]}%") if params[:street_address].present?
-
     # Filter by Zip
-    users = users.where("addresses.zip ILIKE ?", "%#{params[:zip]}%") if params[:zip].present?
-
-    # Filter by Company Name
+    users = users.where("addresses.zipcode ILIKE ?", "%#{params[:zipcode]}%") if params[:zipcode].present?
+    # Filter by Company name
     users = users.where("companies.name ILIKE ?", "%#{params[:company_name]}%") if params[:company_name].present?
 
     # Render the filtered users as JSON
-    render json: users.includes(:address, :company).as_json(include: { address: {}, company: {} })
+    render json: users.as_json(
+      only: [:id, :name, :email, :phone],
+      include: {
+        address: {
+          only: [:street, :suite, :city, :zipcode]
+        }
+      },
+      methods: :company_name
+    )
   end
 
   private
