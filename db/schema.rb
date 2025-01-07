@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_03_203551) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_07_191127) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string "street"
+    t.string "street", null: false
     t.string "suite"
     t.string "city"
     t.string "zipcode"
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_03_203551) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "catch_phrase"
     t.string "bs"
     t.datetime "created_at", null: false
@@ -34,10 +34,10 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_03_203551) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "email"
     t.string "phone"
-    t.string "username"
+    t.string "username", null: false
     t.bigint "address_id", null: false
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
