@@ -23,12 +23,9 @@ class Api::UsersController < ApplicationController
       include: {
         address: {
           only: [:street, :suite, :city, :zipcode]
-        },
-        company: {
-          only: [:name],
-          as: :company_name
         }
-      }
+      },
+      methods: :company_name
     )
   rescue ActiveRecord::RecordNotFound
     render json: { error: "User not found" }, status: :not_found
@@ -60,7 +57,7 @@ class Api::UsersController < ApplicationController
   end
 
   def search
-    users = User.includes(:address, :company).references(:usersearch)
+    users = User.includes(:address, :company)
     # Filter by Name
     users = users.where("users.name ILIKE ?", "%#{params[:name]}%") if params[:name].present?
     # Filter by Email

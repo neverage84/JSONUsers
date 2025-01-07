@@ -952,3 +952,27 @@ Migrating to ChangeTable (20250107191127)
   [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(371696067228428775)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api/users" for ::1 at 2025-01-07 13:22:08 -0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#index as HTML
+  [1m[36mUser Load (6.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mAddress Load (15.8ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+  [1m[36mCompany Load (1.5ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7], ["id", 8], ["id", 9], ["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:7:in `index'
+Completed 200 OK in 276ms (Views: 10.8ms | ActiveRecord: 23.3ms | Allocations: 15307)
+
+
+Started GET "/api/users/search?name=Ervin+Howell" for ::1 at 2025-01-07 13:22:32 -0600
+Processing by Api::UsersController#search as HTML
+  Parameters: {"name"=>"Ervin Howell"}
+  [1m[36mUser Load (23.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.name ILIKE '%Ervin Howell%')[0m
+  ↳ app/controllers/api/users_controller.rb:75:in `search'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/users_controller.rb:75:in `search'
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/users_controller.rb:75:in `search'
+Completed 200 OK in 61ms (Views: 0.7ms | ActiveRecord: 24.1ms | Allocations: 2341)
+
+
