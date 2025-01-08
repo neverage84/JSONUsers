@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Import and persist the users from the following API.**
 
-Things you may want to cover:
+- Tables: User, Address, & Company
+- Service: JsonImporter.import_users
+- Rake Task: rake import:users
 
-* Ruby version
+**Create a JSON API endpoint for users**
+Rails.application.routes.draw do
+  namespace :api do
+    get 'users/search', to: 'users#search'
+    get 'users', to: 'users#index'
+  end
+end
 
-* System dependencies
+**Create a basic search JSON API endpoint that will return user data based on any
+combination of the following parameters:**
+● Name
+● Email
+● Street address
+● Phone
+● Zip
+● Company name
 
-* Configuration
+- localhost:3000/api/search?name=John+Doe&email=abc@gmail.com&street_address=123+Main+St
 
-* Database creation
+  
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
