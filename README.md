@@ -18,12 +18,14 @@ end
 
 **Create a basic search JSON API endpoint that will return user data based on any
 combination of the following parameters:**
+```
 ● Name
 ● Email
 ● Street address
 ● Phone
 ● Zip
 ● Company name
+```
 
 - localhost:3000/api/search?name=John+Doe&email=abc@gmail.com&street_address=123+Main+St
 
