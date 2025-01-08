@@ -7,12 +7,14 @@
 - Rake Task: rake import:users
 
 **Create a JSON API endpoint for users**
+```
 Rails.application.routes.draw do
   namespace :api do
     get 'users/search', to: 'users#search'
     get 'users', to: 'users#index'
   end
 end
+```
 
 **Create a basic search JSON API endpoint that will return user data based on any
 combination of the following parameters:**
